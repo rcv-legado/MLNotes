@@ -1,4 +1,6 @@
 * An Introduction to Variable and Feature Selection (Guyon, Elisseef)
+http://jmlr.csail.mit.edu/papers/volume3/guyon03a/guyon03a.pdf
+
 ** Introduction
 *** We call “variable” the “raw” input variables and “features” variables constructed for the input variables.
 *** Checklist:
