@@ -1,0 +1,58 @@
+* An Introduction to Variable and Feature Selection (Guyon, Elisseef)
+** Introduction
+*** We call “variable” the “raw” input variables and “features” variables constructed for the input variables.
+*** Checklist:
+- Use domain knowledge
+- Normalize features if not commensurate
+- If interdependent, try to construct conjunctive or feature products
+- Prune variables?
+- Use a variable ranking method
+- Detect outlier examples using top ranking variables
+- Use a forward selection method or the l_0 norm method
+- With enough examples/time/resources, try several feature selection methods
+- Subsample data, redo analysis for bootstrap
+
+** Variable ranking
+Set of {x_k, y_k}, scored with S(x_k, y_k)
+*** Regression: R^2(i) for each variable i
+*** Classification
+**** Build classifier with a single variable for each variable
+*** Information theoretic criteria
+**** Mutual information:
+I(i) = \int_x \int_y p(x_i, y) log [p(x_i, y) / p(x_i)p(y)] dxdy
+A measure of dependency between density of x_i and density of y_i. Typically variables are discretized.
+** Examples
+*** Redundancy
+Take two iid, normally distributed classes with centers at (-1, 1) and (1, 1). x and y are redundant at first glance, but a rotation of 45 deg (or an average), standard deviation is reduced by \sqrt 2.
+*** Correlation
+Very high correlation does not mean absence of complementarity.
+
+** Variable subset selection
+*** Wrappers (forward selection, backward elimination)
+Universal, black-box, easy to implement, inefficient, need a validation set. 
+*** Nested (embedded) methods
+Ran as part of the training process
+*** Direct objective optimization
+Similar to regularization, include a second part to the objective function that involves weights (in the limit of l_0 norm, just number of variables)
+*** Filters
+E.g. based on mutual information
+
+** Building features
+*** Clustering
+Replace a group of similar features with the cluster centroid.
+The new feature X' minimizes the MI with the original X (I(X, X')) while preserving MI with Y (I(X', Y))
+*** SVD
+Form a set of linear combination of the original variables
+*** Supervised feature selection
+
+
+** Validation
+Used to determine number of variables that are "significant", guide and halt search for good variable subsets, choose hyperparameters, etc.
+*** Fixed validation set
+*** Cross-validation, e.g. leave-one-out
+
+
+* Ideas
+** Introduce three or more "fake" variables. When fake variables are selected, stop the variable selection process.
+Include that in forward selection.
+
